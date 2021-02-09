@@ -15,16 +15,16 @@ spec:
       containers:
         - name: auth
           image: wesleydeitch/auth
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: auth-srv
-spec:
-  selector:
-    app: auth
-  ports:
-    - name: auth
-      protocol: TCP
-      port: 3000
-      targetPort: 3000
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: auth-srv
+# spec:
+#   selector:
+#     app: auth
+#   type: LoadBalancer
+#   ports:
+#     - protocol: TCP
+#       port: 3000
+#       targetPort: 3000

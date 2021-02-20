@@ -1,9 +1,8 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, RequestHandler } from 'express';
 import { body } from 'express-validator';
-import { BadRequestError } from '../errors/bad-request-error';
+import { validateRequest, BadRequestError } from '@wdtickets/common';
 import { User } from '../models/user';
 import jwt from 'jsonwebtoken';
-import { validateRequest } from '../middlewares/validateRequest';
 
 const router = express.Router();
 
@@ -16,7 +15,7 @@ router.post(
       .isLength({ min: 4, max: 20 })
       .withMessage('Password must be between 4 and 20 characters'),
   ],
-  validateRequest,
+  validateRequest as RequestHandler,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const existingUser = await User.find({ email });

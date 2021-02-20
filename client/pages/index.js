@@ -4,7 +4,7 @@ const LandingPage = () => {
   return <h1>Landing Page</h1>;
 };
 
-LandingPage.getInitialProps = async () => {
+LandingPage.getInitialProps = async ({ req }) => {
   if (typeof window === 'undefined') {
     // We are on the server!
     // request should be made to http://ingress-nginx.ingress-nginx
@@ -12,7 +12,7 @@ LandingPage.getInitialProps = async () => {
       'http://ingress-nginx.ingress-nginx.svc.cluster.local/api/users/currentuser',
       {
         headers: {
-          Host: 'ticketing.dev',
+          Host: req.headers,
         },
       }
     );

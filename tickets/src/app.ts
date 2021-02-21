@@ -2,6 +2,7 @@ import express, { ErrorRequestHandler } from 'express';
 import { json } from 'body-parser';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
+import { createTicketRouter } from './routes/new';
 import { NotFoundError, errorHandler } from '@wdtickets/common';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(
   })
 );
 // Routers
+app.use(createTicketRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

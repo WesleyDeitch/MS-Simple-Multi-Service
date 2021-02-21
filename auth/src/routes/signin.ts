@@ -1,4 +1,4 @@
-import express, { Request, Response, RequestHandler } from 'express';
+import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 import { validateRequest, BadRequestError } from '@wdtickets/common';
@@ -17,7 +17,7 @@ router.post(
       .notEmpty()
       .withMessage('You must supply a password'),
   ],
-  validateRequest as RequestHandler,
+  validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 

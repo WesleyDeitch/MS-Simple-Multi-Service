@@ -4,6 +4,7 @@ import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { createTicketRouter } from './routes/new';
 import { NotFoundError, errorHandler, currentUser } from '@wdtickets/common';
+import { showTicketRouter } from './routes/show';
 
 const app = express();
 app.set('trust proxy', true);
@@ -17,6 +18,7 @@ app.use(
 app.use(currentUser);
 // Routers
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

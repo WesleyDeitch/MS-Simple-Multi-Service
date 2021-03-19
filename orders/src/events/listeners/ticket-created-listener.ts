@@ -2,7 +2,6 @@ import { Message } from 'node-nats-streaming';
 import { Subjects, Listener, TicketCreatedEvent } from '@wdtickets/common';
 import { Ticket } from '../../models/ticket';
 import { queueGroupName } from './queue-group-name';
-import { transform } from 'typescript';
 
 export class TicketCreatedListener extends Listener<TicketCreatedEvent> {
   subject: Subjects.TicketCreated = Subjects.TicketCreated;

@@ -13,13 +13,13 @@ spec:
         app: tickets
     spec:
       containers:
-        - name: NATS_CLIENT_ID
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
         - name: tickets
           image: wesleydeitch/tickets
           env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: NATS_URL
               value: http://nats-srv:4222'
             - name: NATS_CLUSTER_ID

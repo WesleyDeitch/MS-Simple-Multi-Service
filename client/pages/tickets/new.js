@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
 
 const NewTicket = () => {
@@ -8,16 +9,17 @@ const NewTicket = () => {
     url: '/api/tickets',
     method: 'post',
     body: {
-      title, price
+      title,
+      price,
     },
-    onSuccess: (ticket) => console.log(ticket);
+    onSuccess: () => Router.push('/'),
   });
-  
+
   const onSubmit = (event) => {
     event.preventDefault();
 
     doRequest();
-  }
+  };
 
   const onBlur = () => {
     const value = parseFloat(price);
